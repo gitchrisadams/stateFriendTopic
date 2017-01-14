@@ -57,6 +57,8 @@ $querySetChatStatus =
   mysqli_close($dbc);
 
   // Redirect to the home page
-  $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . 'index.php';
+  $home_url = 'index.php';
+  
+  // $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . 'index.php';
   header('Location: ' . $home_url);
 ?>

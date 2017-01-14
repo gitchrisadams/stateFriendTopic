@@ -42,42 +42,36 @@
 
 ?>
 <div class="TenPxPaddingDiv jumbotron">
-<h1>Chat</h1>
+<h1>Topics</h1>
 
-
+<table>
 <?php 
+  while($row = mysqli_fetch_array($data)){
     
     // If user is logged in, display link:
     if(isset($_SESSION['user_id'])){
   ?>
-          <br>
-          <a href="state.php"><h3>State chat</h3></a>
-          <br>
-          <a href="citystate.php"><h3>City/State Chat</h3></a>
-          <br>
-          <a href="topics.php"><h3>USA Chat</h3></a>
-          <br>
-          <a href="landmark.php"><h3>Landmark Chat</h3></a>
-          <br>
+    <tr>
+      <td>
+        <?php echo $row['name']; ?>
+      </td>
+      <td>
+        <?php 
+          echo '<a href="viewtopics.php?topic_id=' . $row['topic_id'] . '&name=' . $row['name'] . '">' . "(" .  $row['COUNT(*)'] . ")" . "</a>";  
+        ?>
+      </td></tr>
   <?php
     }
       // If user is not logged in, just display topic w/ no link:
       else{
   ?>
-          <br>
-          <h3>State chat</h3>
-          <br>
-          <h3>City/State Chat</h3>
-          <br>
-          <h3>USA Chat</h3>
-          <br>
-          <h3>Landmark Chat</h3>
-          <br>
+    <tr><td><?php echo $row['name']; ?></td><td><?php echo "(" . $row["COUNT(*)"] . ")"; ?></td></tr>
 
     <?php
       }
-
+  }
     ?>
+</table>
 </div>
 <?php
   mysqli_close($dbc);

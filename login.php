@@ -48,7 +48,8 @@
           //setcookie('username', $row['username'], time() + (60 * 60 * 24 * 30)); 
            
 
-          $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . 'index.php';
+          // $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . 'index.php';
+          $home_url = 'index.php';
           header('Location: ' . $home_url);
 
           // Set the chat status of the user to 1 since they are now online:
@@ -57,6 +58,7 @@
             SET chat_status=1 WHERE mismatch_user.username=" . "'" . $user_username . "'";
 
             mysqli_query($dbc, $querySetChatStatus);
+            mysqli_close($dbc);
 
         }
         else {
@@ -105,7 +107,7 @@
 ?>
 </div>
 <?php
-  mysqli_close($dbc);
+  
   // Insert the page footer
   require_once('footer.php');
 ?>
