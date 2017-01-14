@@ -47,10 +47,15 @@ $querySetChatStatus =
   $queryDeleteAllMessages = "DELETE FROM messages 
     WHERE username=" . "'" . $user_username . "'";
 
+  $queryDeleteAllMessagesFromState = "DELETE FROM messagestate 
+    WHERE username=" . "'" . $user_username . "'";
+
   // Set chat status to offline:
   mysqli_query($dbc, $querySetChatStatus);
 
+  // Run query to delete all messages from user:
   mysqli_query($dbc, $queryDeleteAllMessages);
+  mysqli_query($dbc, $queryDeleteAllMessagesFromState);
 
 
 

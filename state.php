@@ -78,7 +78,9 @@
         $usersInState++;
       }
     }
-    echo " (" . $usersInState . ")" . "<br>";
+    //echo " (" . $usersInState . ")" . "<br>";
+
+    echo '<a href="stateViewTopic.php?state=' . $row['state'] . '">' . "(" .  $usersInState . ")" . "</a>" . "<br>";
 
     }
       // If user is not logged in, just display topic w/ no link:

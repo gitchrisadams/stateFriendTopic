@@ -9,12 +9,12 @@ if ($db->connect_error) {
 }
 
 $username = stripslashes(htmlspecialchars($_GET['username']));
-$topicID = stripslashes(htmlspecialchars($_GET['state_id']));
+$topicID = stripslashes(htmlspecialchars($_GET['topic_id']));
 
 $result = $db->query
-    ("SELECT messages.id, messages.username, messages.message, messages.topic_id
-    FROM messages 
-    WHERE topic_id =" . $topicID);
+    ("SELECT messagestate.id, messagestate.username, messagestate.message, messagestate.topic_id
+    FROM messagestate 
+    WHERE topic_id =" . "'" . $topicID . "'");
 
 
 while ($r = $result->fetch_row()) {

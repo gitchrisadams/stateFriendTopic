@@ -3,7 +3,7 @@
   require_once('startsession.php');
 
   // Insert the page header
-  $page_title = 'View Topics';
+  $page_title = 'View States';
   require_once('header.php');
 
   require_once('appvars.php');
@@ -24,38 +24,48 @@
 $dbc = db_connect();
 
 // Store topic name and id from the GET data:
-$topicID = $_GET['topic_id'];
-$topicName = $_GET['name'];
+$stateID = $_GET['state'];
+
 
 ?>
 <div class="TenPxPaddingDiv">
 
 <!-- Output the name of the current Topic -->
-<?php echo '<h1><a href="chat.php?topic_name=' . $topicName . '&topic_id=' . $topicID .'">' . 'Chat in ' . $topicName . '<br></a></h1>'; ?>
+<?php echo '<h1><a href="statechat.php?state=' . $stateID .'">' . 'Chat in ' . $stateID . '<br></a></h1>'; ?>
 
-<h1>Users with an interest in <?php echo $topicName; ?>:</h1>
+<h1>Users from <?php echo $stateID; ?>:</h1>
 
 <!-- TODO: List the users from this topic that are in the database: -->
 <?php
-  // Create query to get all users for current topic:
-  // $queryAllUsersInTopic = "SELECT user_id FROM mismatch_user_topic
-  //   WHERE topic_id =" . $topicID;
+  // $queryAllUsersTopicAndInfo = 
+  //   "SELECT mismatch_user_topic.user_id, mismatch_user_topic.topic_id,
+  //     mismatch_user.user_id, mismatch_user.username,
+  //     CONCAT_WS(' ', mismatch_user.first_name, mismatch_user.last_name) AS 'whole_name',
+  //     mismatch_user.gender, 
+  //     CONCAT_WS(', ', mismatch_user.city, mismatch_user.state) AS 'city_state',
+  //     mismatch_user.picture, mismatch_user.chat_status
+  //     FROM mismatch_user_topic
+  //     INNER JOIN mismatch_user
+  //     ON mismatch_user_topic.user_id = mismatch_user.user_id
+  //     WHERE state =" . $stateID .  " ORDER BY mismatch_user.chat_status DESC, 
+  //     mismatch_user.last_name" ;
 
-  $queryAllUsersTopicAndInfo = 
-    "SELECT mismatch_user_topic.user_id, mismatch_user_topic.topic_id,
+
+  $queryAllUsersAndStates = 
+  "SELECT states.stateCode,
       mismatch_user.user_id, mismatch_user.username,
       CONCAT_WS(' ', mismatch_user.first_name, mismatch_user.last_name) AS 'whole_name',
       mismatch_user.gender, 
       CONCAT_WS(', ', mismatch_user.city, mismatch_user.state) AS 'city_state',
       mismatch_user.picture, mismatch_user.chat_status
-      FROM mismatch_user_topic
+      FROM states
       INNER JOIN mismatch_user
-      ON mismatch_user_topic.user_id = mismatch_user.user_id
-      WHERE topic_id =" . $topicID .  " ORDER BY mismatch_user.chat_status DESC, 
-      mismatch_user.last_name" ;
+      ON states.stateCode = mismatch_user.state
+      WHERE state =" . "'" . $stateID . "' " . "ORDER BY mismatch_user.chat_status DESC, 
+      mismatch_user.last_name";
 
   // Store/execute query:
-  $dataAllUsersInTopic = mysqli_query($dbc, $queryAllUsersTopicAndInfo);
+  $dataAllUsersInTopic = mysqli_query($dbc, $queryAllUsersAndStates);
 
   while ($row = mysqli_fetch_array($dataAllUsersInTopic)){ 
     echo 'Username: ' . $row['username'] . '<br>';
@@ -65,8 +75,7 @@ $topicName = $_GET['name'];
 
     // Determine chat availability:
     if($row['chat_status']){
-      echo '<a href="chat.php?topic_name=' . $topicName . 
-      '&topic_id=' . $topicID .
+      echo '<a href="statechat.php?topic_name=' . $stateID . 
       '">chat status: Online<br></a>'; 
     }else{
       echo "chat status: Offline<br>";
