@@ -12,9 +12,9 @@ $username = stripslashes(htmlspecialchars($_GET['username']));
 $topicID = stripslashes(htmlspecialchars($_GET['topic_id']));
 
 $result = $db->query
-    ("SELECT messages.id, messages.username, messages.message, messages.topic_id
-    FROM messages 
-    WHERE topic_id =" . $topicID);
+    ("SELECT messagescity.id, messagescity.username, messagescity.message, messagescity.topic_id
+    FROM messagescity
+    WHERE topic_id =" . "'" . $topicID . "'");
 
 
 while ($r = $result->fetch_row()) {

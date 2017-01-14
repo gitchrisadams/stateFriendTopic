@@ -37,60 +37,68 @@
   // GROUP BY mismatch_user_topic.topic_id
   // ORDER BY COUNT(*) DESC";
   
-  $queryStates = "SELECT DISTINCT state FROM mismatch_user ORDER BY state";
-  $queryAllSates = "SELECT state FROM mismatch_user ORDER BY state";
+  $queryCity = "SELECT DISTINCT city, state 
+  FROM mismatch_user  
+  WHERE city !=" . 
+  "\"\"" .   
+  " ORDER BY city";
 
+  $queryAllCity = 
+  "SELECT city, state 
+  FROM mismatch_user  
+  WHERE city !=" . 
+  "\"\"" .   
+  " ORDER BY city";
 
   // Query database passing query to function in dbconnect.php:
-  $data = mysqli_query($dbc, $queryStates);
-  $data2 = mysqli_query($dbc, $queryAllSates);
+  $data = mysqli_query($dbc, $queryCity);
+  $data2 = mysqli_query($dbc, $queryAllCity);
 
-  $statesArray = array();
+  $cityArray = array();
   $nextItem = 0;
   while($row2 = mysqli_fetch_array($data2)){
-    $statesArray[$nextItem] = $row2['state'];
+    $cityArray[$nextItem] = $row2['city'];
     $nextItem++;
   }
 
-  // // Loop through and display array for testing:
-  // foreach ($statesArray as $value) {
-  //   echo "The value is: " . $value . "<br>";
-  // }
-
-
 ?>
 <div class="TenPxPaddingDiv jumbotron">
-<h1>States</h1>
-
+<h1>Cities</h1>
 
 <?php 
   echo "<table>";
   while($row = mysqli_fetch_array($data)){
-    $usersInState=0;
+    $usersInCity=0;
     // If user is logged in, display link:
     if(isset($_SESSION['user_id'])){
     echo "<tr><td>";
-    echo $row['state']; 
+    echo $row['city'] . ", " . $row['state'] . " "; 
     echo "</td>";
-
     // Loop through and display array for testing:
-    foreach ($statesArray as $value) {
-      if($value == $row['state']){
-        $usersInState++;
+    foreach ($cityArray as $value) {
+      if($value == $row['city']){
+        $usersInCity++;
       }
     }
     echo "<td>";
-    echo '<a href="stateViewTopic.php?state=' . $row['state'] . '">' . "(" .  $usersInState . ")" . "</a>" . "<br>";
+    echo '<a href="cityViewTopic.php?city=' . 
+    $row['city'] . 
+    '&state=' .
+    $row['state'] . 
+    '">' . 
+    "(" .  $usersInCity . ")" . 
+    "</a>" . 
+    "<br>";
     echo "</td></tr>";
     }
       // If user is not logged in, just display topic w/ no link:
       else{
         echo "<tr><td>";
-        echo $row['name']; ?><?php echo "(" . $row["COUNT(*)"] . ")"; 
+        echo $row['city']; ?><?php echo "(" . $row["COUNT(*)"] . ")"; 
         echo "</td></tr>";
+
       }
   }
-
   echo "</table>";
     ?>
 

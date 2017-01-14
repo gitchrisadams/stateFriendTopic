@@ -54,7 +54,7 @@
 
           // Set the chat status of the user to 1 since they are now online:
           $querySetChatStatus = 
-            "UPDATE christad_friendtopic.mismatch_user 
+            "UPDATE christad_statefriendtopic.mismatch_user 
             SET chat_status=1 WHERE mismatch_user.username=" . "'" . $user_username . "'";
 
             mysqli_query($dbc, $querySetChatStatus);

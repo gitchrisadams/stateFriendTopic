@@ -53,12 +53,11 @@
           <br>
           <a href="state.php"><h3>State chat</h3></a>
           <br>
-          <a href="citystate.php"><h3>City/State Chat</h3></a>
+          <a href="city.php"><h3>City/State Chat</h3></a>
           <br>
           <a href="topics.php"><h3>USA Topic Chat</h3></a>
           <br>
-          <a href="landmark.php"><h3>Landmark Chat</h3></a>
-          <br>
+
   <?php
     }
       // If user is not logged in, just display topic w/ no link:
@@ -70,8 +69,6 @@
           <h3>City/State Chat</h3>
           <br>
           <h3>USA Chat</h3>
-          <br>
-          <h3>Landmark Chat</h3>
           <br>
 
     <?php

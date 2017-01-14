@@ -39,7 +39,7 @@
   // The user is logged out so set chat status to offline:
   // Set the chat status of the user to 0 since they are now online:
 $querySetChatStatus = 
-  "UPDATE christad_friendtopic.mismatch_user 
+  "UPDATE christad_statefriendtopic.mismatch_user 
   SET chat_status=0 WHERE mismatch_user.username=" . "'" . $user_username . "'";
 
   
@@ -50,13 +50,17 @@ $querySetChatStatus =
   $queryDeleteAllMessagesFromState = "DELETE FROM messagestate 
     WHERE username=" . "'" . $user_username . "'";
 
+  $queryDeleteAllMessagesFromCity = "DELETE FROM messagescity 
+    WHERE username=" . "'" . $user_username . "'";
+
+
   // Set chat status to offline:
   mysqli_query($dbc, $querySetChatStatus);
 
   // Run query to delete all messages from user:
   mysqli_query($dbc, $queryDeleteAllMessages);
   mysqli_query($dbc, $queryDeleteAllMessagesFromState);
-
+  mysqli_query($dbc, $queryDeleteAllMessagesFromCity);
 
 
   mysqli_close($dbc);
