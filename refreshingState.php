@@ -14,22 +14,20 @@ $dbc = db_connect();
 // Set the encoding...
 mysqli_set_charset($dbc, 'utf8');
 
-$currentTopicID = $_GET["topic_id"];
+$currentTopic = $_GET["topic_id"];
 
 // Create query to get all the users logged in:
-$queryAllUsersLoggedin = "SELECT DISTINCT messages.username, messages.topic_id FROM messages WHERE topic_id =" . $currentTopicID;
-
-
+$queryAllUsersLoggedin = "SELECT DISTINCT messagestate.username, messagestate.topic_id FROM messagestate WHERE topic_id =" . "'" . $currentTopic . "'";
 
 
 // Query database passing in our query:
-$data = mysqli_query($dbc, $queryAllUsersLoggedin);
+$dataStateUsers = mysqli_query($dbc, $queryAllUsersLoggedin);
 
 $arrayUsernames = array();
 
-while($row = mysqli_fetch_array($data)){
+while($rowState = mysqli_fetch_array($dataStateUsers)){
     // Store all usernames logged in, into an array:
-    $arrayUsernames[] = $row['username'];
+    $arrayUsernames[] = $rowState['username'];
 }
 
 foreach ($arrayUsernames as $value) {

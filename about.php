@@ -18,6 +18,11 @@
   // Show the navigation menu
   require_once('navmenu.php');
 
+    // Make sure the user is logged in before deleting messages:
+  if (isset($_SESSION['user_id'])) {
+    require_once('deleteAllMessages.php');
+  }
+
 ?>
 <div id="about">
 <h1>About FriendTopic</h1>

@@ -49,6 +49,8 @@
     
     // If user is logged in, display link:
     if(isset($_SESSION['user_id'])){
+      // Delete all messages to start:
+      require_once("deleteAllMessages.php");
   ?>
           <br>
           <a href="state.php"><h3>State chat</h3></a>

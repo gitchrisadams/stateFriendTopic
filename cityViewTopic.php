@@ -32,7 +32,7 @@ $stateid = $_GET['state'];
 <div class="TenPxPaddingDiv">
 
 <!-- Output the name of the current Topic -->
-<?php echo '<h1><a href="citychat.php?city=' . $cityID .'">' . 'Chat in ' . $cityID . ', ' . $stateid . '<br></a></h1>'; ?>
+<?php echo '<h1><a href="citychat.php?city=' . $cityID . '&stateid='. $stateid . '">' . 'Chat in ' . $cityID . ', ' . $stateid . '<br></a></h1>'; ?>
 
 <h1>Users from <?php echo $cityID . ", " . $stateid; ?>:</h1>
 
@@ -60,8 +60,8 @@ $stateid = $_GET['state'];
 
     // Determine chat availability:
     if($row['chat_status']){
-      echo '<a href="citychat.php?city=' . $cityID . 
-      '">chat status: Online<br></a>'; 
+      echo '<a href="citychat.php?city=' . $cityID . '&stateid='. $stateid . '">' . 'chat status: Online<br></a>';
+
     }else{
       echo "chat status: Offline<br>";
     }

@@ -6,7 +6,7 @@ function set_interval() {
   // '10000' indicates how many milliseconds the timer be set to.
   // Eg: to set it to 5 mins, calculate 5min = 5x60 = 300 sec = 300,000 millisec.
   // So set it to 300000
-  timer = setInterval("auto_logout()", 300000);
+  timer = setInterval("auto_logout()", 900000);
 
 }
 
@@ -19,7 +19,7 @@ function reset_interval() {
     clearInterval(timer);
     timer = 0;
     // second step: implement the timer again
-    timer = setInterval("auto_logout()", 300000);
+    timer = setInterval("auto_logout()", 900000);
     // completed the reset of the timer
   }
 }

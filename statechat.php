@@ -5,6 +5,13 @@ require_once('startsession.php');
 // Database connection variables:
 require_once('dbconnect.php');
 
+require_once("autologout.js");
+
+// Connect to the database 
+$dbc = db_connect();
+
+// Set the encoding...
+mysqli_set_charset($dbc, 'utf8');
 
 ?>
 
@@ -25,25 +32,49 @@ require_once('dbconnect.php');
 </head>
 
 
-<body onload="update();">
+<body onload="update(); set_interval();"
+onmousemove="reset_interval()"
+onclick="reset_interval()"
+onkeypress="reset_interval()"
+onscroll="reset_interval()">
 <div id="whitebg"></div>
 
 <?php 
 // Get the current topic from GET:
 $currentTopic = $_GET["state"];
 
+// Get the current username:
+$username = $_SESSION['username'];
+
+require_once("deleteAllMessages.php");
+
+// Display a message that user has entered the chat room:
+$userHasEntered = $username . " has entered the chat room.";
+
+$result = $dbc->prepare("INSERT INTO messagestate VALUES('',?,?,?)");
+$result->bind_param("sss", $username, $userHasEntered, $currentTopic);
+$result->execute();
+mysqli_close($dbc);
+
 
 echo '<div class="TenPxPaddingDiv"><a href="index.php"><h3>FriendTopic</h3></a></div>';
 
 // Show the navigation menu
 require_once('navmenu.php');
-
-
-
 ?>
+<script>alert("Warning, logging off, refreshing/leaving page will delete all your chat messages"); </script>
+
 <div class="msg-container">
 
     <div class="header"><h1><?php echo $currentTopic ?> chat</h1></div>
+
+    <div class="rightSide">
+    <?php $refreshing = "refreshingState.php?topic_id=" . $currentTopic; ?>
+
+     <iframe id='dynamic-content' frameborder="1" width="20" height=100 src='<?php echo $refreshing; ?>' ></iframe>
+    </div>
+
+
     <div class="msg-area" id="msg-area"></div>
     <div class="bottom"><input type="text" name="msginput" class="msginput" id="msginput" onkeydown="if (event.keyCode == 13) sendmsg()" value="" placeholder="Enter your message here ... (Press enter to send message)"></div>
 </div>

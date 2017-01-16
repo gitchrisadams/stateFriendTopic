@@ -5,6 +5,8 @@ require_once('startsession.php');
 // Database connection variables:
 require_once('dbconnect.php');
 
+require_once("autologout.js");
+
 // Connect to the database 
 $dbc = db_connect();
 
@@ -29,7 +31,12 @@ mysqli_set_charset($dbc, 'utf8');
 </head>
 
 
-<body onload="update();">
+<body onload="update(); set_interval();"
+onmousemove="reset_interval()"
+onclick="reset_interval()"
+onkeypress="reset_interval()"
+onscroll="reset_interval()">
+
 <div id="whitebg"></div>
 
 <?php 
@@ -37,28 +44,42 @@ mysqli_set_charset($dbc, 'utf8');
 $currentTopic = $_GET["topic_name"];
 $currentTopicID = $_GET["topic_id"];
 
+// Get the current username:
+$username = $_SESSION['username'];
 
+require_once("deleteAllMessages.php");
+
+// Display a message that user has entered the chat room:
+$userHasEntered = $username . " has entered the chat room.";
+
+$result = $dbc->prepare("INSERT INTO messages VALUES('',?,?,?)");
+$result->bind_param("ssd", $username, $userHasEntered, $currentTopicID);
+$result->execute();
+mysqli_close($dbc);
+
+// Display header:
 echo '<div id="chatHeader"><a href="index.php"><h3>FriendTopic</h3></a></div><br>';
 
 // Show the navigation menu
 require_once('navmenu.php');
 
-
-
-
-
 ?>
+<script>alert("Warning, logging off, refreshing/leaving page will delete all your chat messages"); </script>
+
     <div class="msg-container">
 
         <div class="header">
             <h1><?php echo $currentTopic ?> USA Chat</h1>
 
         </div>
+
     <div class="rightSide">
     <?php $refreshing = "refreshing.php?topic_id=" . $currentTopicID; ?>
 
      <iframe id='dynamic-content' frameborder="1" width="20" height=100 src='<?php echo $refreshing; ?>' ></iframe>
     </div>
+
+
         <div class="msg-area" id="msg-area"></div>
 
         <div class="bottom"><input type="text" name="msginput" class="msginput" id="msginput" onkeydown="if (event.keyCode == 13) sendmsg()" value="" placeholder="Enter your message here ... (Press enter to send message)">
@@ -115,11 +136,6 @@ function escapehtml(text) {
 }
 
 function update() {
-    <?php $username = $_SESSION['username']; ?>
-
-    // Store the username in php session in a javascript variable:
-    var username = <?php echo json_encode($username); ?>;
-
     // Store the username in php session in a javascript variable:
     var username = <?php echo json_encode($username); ?>;
 
@@ -151,7 +167,7 @@ function update() {
 
                 msgarea.innerHTML = output;
                 msgarea.scrollTop = msgarea.scrollHeight;
-                rightSide.innerHTML;
+                
             }
         }
 
@@ -194,10 +210,11 @@ function sendmsg() {
     }
 
 }
-<?php   
-mysqli_close($dbc);
-?>
+
 setInterval(function(){ update() }, 2500);
 </script>
+
+
+
 </body>
 </html>

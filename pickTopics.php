@@ -25,6 +25,9 @@ if (!isset($_SESSION['user_id']))
 // Show the navigation menu
 require_once('navmenu.php');
 
+// Delete all messages to start:
+require_once("deleteAllMessages.php");
+
 // Connect to the database 
 $dbc = db_connect();
 

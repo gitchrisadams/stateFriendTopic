@@ -21,40 +21,8 @@
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
+<?php require_once("autologout.js"); ?>
 
-<script>
-// Add the following into your HEAD section
-var timer = 0;
-function set_interval() {
-  // the interval 'timer' is set as soon as the page loads
-  // '10000' indicates how many milliseconds the timer be set to.
-  // Eg: to set it to 5 mins, calculate 5min = 5x60 = 300 sec = 300,000 millisec.
-  // So set it to 3,600,000 for 1 hour:
-  timer = setInterval("auto_logout()", 900000);
-
-}
-
-function reset_interval() {
-  //resets the timer. The timer is reset on each of the below events:
-  // 1. mousemove   2. mouseclick   3. key press 4. scroliing
-  //first step: clear the existing timer
-
-  if (timer != 0) {
-    clearInterval(timer);
-    timer = 0;
-    // second step: implement the timer again
-    // So set it to 3,600,000 for 1 hour:
-    timer = setInterval("auto_logout()", 900000);
-    // completed the reset of the timer
-  }
-}
-
-function auto_logout() {
-  // this function will redirect the user to the logout script
-  window.location = "logout.php";
-}
-
-</script>
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
