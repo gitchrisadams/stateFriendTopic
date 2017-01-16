@@ -5,7 +5,11 @@ require_once('startsession.php');
 // Database connection variables:
 require_once('dbconnect.php');
 
+// Connect to the database 
+$dbc = db_connect();
 
+// Set the encoding...
+mysqli_set_charset($dbc, 'utf8');
 ?>
 
 <html>
@@ -21,7 +25,7 @@ require_once('dbconnect.php');
 
 <!-- External stylesheet -->
 <link rel="stylesheet" type="text/css" href="stylesChat.css">
-    <title>Messenger</title>
+    <title>USA Chat</title>
 </head>
 
 
@@ -31,22 +35,36 @@ require_once('dbconnect.php');
 <?php 
 // Get the current topic from GET:
 $currentTopic = $_GET["topic_name"];
+$currentTopicID = $_GET["topic_id"];
 
 
-echo '<div class="TenPxPaddingDiv"><a href="index.php"><h3>FriendTopic</h3></a></div>';
+echo '<div id="chatHeader"><a href="index.php"><h3>FriendTopic</h3></a></div><br>';
 
 // Show the navigation menu
 require_once('navmenu.php');
 
 
 
-?>
-<div class="msg-container">
 
-    <div class="header"><h1><?php echo $currentTopic ?> chat</h1></div>
-    <div class="msg-area" id="msg-area"></div>
-    <div class="bottom"><input type="text" name="msginput" class="msginput" id="msginput" onkeydown="if (event.keyCode == 13) sendmsg()" value="" placeholder="Enter your message here ... (Press enter to send message)"></div>
-</div>
+
+?>
+    <div class="msg-container">
+
+        <div class="header">
+            <h1><?php echo $currentTopic ?> USA Chat</h1>
+
+        </div>
+    <div class="rightSide">
+    <?php $refreshing = "refreshing.php?topic_id=" . $currentTopicID; ?>
+
+     <iframe id='dynamic-content' frameborder="1" width="20" height=100 src='<?php echo $refreshing; ?>' ></iframe>
+    </div>
+        <div class="msg-area" id="msg-area"></div>
+
+        <div class="bottom"><input type="text" name="msginput" class="msginput" id="msginput" onkeydown="if (event.keyCode == 13) sendmsg()" value="" placeholder="Enter your message here ... (Press enter to send message)">
+        </div>
+    </div>
+
 <script type="text/javascript">
 
 var msginput = document.getElementById("msginput");
@@ -133,7 +151,7 @@ function update() {
 
                 msgarea.innerHTML = output;
                 msgarea.scrollTop = msgarea.scrollHeight;
-
+                rightSide.innerHTML;
             }
         }
 
@@ -176,7 +194,9 @@ function sendmsg() {
     }
 
 }
-
+<?php   
+mysqli_close($dbc);
+?>
 setInterval(function(){ update() }, 2500);
 </script>
 </body>

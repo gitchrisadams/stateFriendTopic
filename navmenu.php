@@ -1,6 +1,6 @@
 <?php
   // Generate the navigation menu if user is logged in:
-  echo '<hr />';
+  //echo '<hr />';
 ?>
 <!-- External stylesheet -->
 <link rel="stylesheet" type="text/css" href="style.css">

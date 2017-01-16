@@ -29,16 +29,16 @@
 
 
   // Create query to get topic names and users in each topic:
-  $query = 
-  "SELECT mismatch_topic.name, mismatch_user_topic.topic_id, COUNT(*) 
-  FROM mismatch_user_topic 
-  INNER JOIN mismatch_topic
-  ON mismatch_user_topic.topic_id = mismatch_topic.topic_id
-  GROUP BY mismatch_user_topic.topic_id
-  ORDER BY COUNT(*) DESC";
+  // $query = 
+  // "SELECT mismatch_topic.name, mismatch_user_topic.topic_id, COUNT(*) 
+  // FROM mismatch_user_topic 
+  // INNER JOIN mismatch_topic
+  // ON mismatch_user_topic.topic_id = mismatch_topic.topic_id
+  // GROUP BY mismatch_user_topic.topic_id
+  // ORDER BY COUNT(*) DESC";
 
   // Query database passing query to function in dbconnect.php:
-  $data = mysqli_query($dbc, $query);
+  //$data = mysqli_query($dbc, $query);
 
 ?>
 <div class="TenPxPaddingDiv jumbotron">
