@@ -14,6 +14,8 @@ $dbc = db_connect();
 mysqli_set_charset($dbc, 'utf8');
 ?>
 
+
+
 <html>
 <head>
 <link rel="shortcut icon" href="images/chrisico.png" />
@@ -33,7 +35,7 @@ mysqli_set_charset($dbc, 'utf8');
 </head>
 
 
-<body onload="update(); set_interval();"
+<body onload="update(); set_interval(); play_sound();"
 onmousemove="reset_interval()"
 onclick="reset_interval()"
 onkeypress="reset_interval()"
@@ -178,6 +180,8 @@ function update() {
             ,true);
 
           xmlhttp.send();
+
+
 }
 
 function sendmsg() {
@@ -208,6 +212,7 @@ function sendmsg() {
             ,true);
 
           xmlhttp.send();
+          play_sound();
 
     }
 
@@ -215,6 +220,20 @@ function sendmsg() {
 
 setInterval(function(){ update() }, 2500);
 </script>
+
+<script type="text/javascript">
+
+// Play sound file when new message received:
+    function play_sound() {
+        var audioElement = document.createElement('audio');
+        audioElement.setAttribute('src', '/assets/music/newMessage.wav');
+        audioElement.setAttribute('autoplay', 'autoplay');
+        audioElement.load();
+        audioElement.play();
+    }
+
+</script>
+
 
 
 
