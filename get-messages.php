@@ -2,6 +2,7 @@
 // Database connection variables:
 require_once('dbconnect.php');
 
+
 $db = db_connect();
 
 if ($db->connect_error) {
@@ -15,6 +16,7 @@ $result = $db->query
     ("SELECT messages.id, messages.username, messages.message, messages.topic_id
     FROM messages 
     WHERE topic_id =" . $topicID);
+
 
 
 while ($r = $result->fetch_row()) {
