@@ -1,12 +1,14 @@
 <html>
 <head>
    <!-- refresh every 5 seconds -->
-   <meta http-equiv="refresh" content="5">
+   <meta http-equiv="refresh" content="2">
 </head>
 <body>   
 <?php
 // Database connection variables:
 require_once('dbconnect.php');
+
+require_once('playSound.js');
 
 // Connect to the database 
 $dbc = db_connect();
@@ -30,9 +32,31 @@ while($rowState = mysqli_fetch_array($dataStateUsers)){
     $arrayUsernames[] = $rowState['username'];
 }
 
+// Output users in database:
 foreach ($arrayUsernames as $value) {
     echo "username: " . $value . "<br>";
 }
+
+// Get a count of the number of users loggedin to this state:
+$countUsers = count($arrayUsernames);
+echo "Number of users in chat: " . $countUsers;
+
+$currentUsers = 0;
+
+// Get another count of users in database:
+$queryAllUsersLoggedin2 = "SELECT DISTINCT messagestate.username, messagestate.topic_id FROM messagestate WHERE topic_id =" . "'" . $currentTopic . "'";
+$dataStateUsers2 = mysqli_query($dbc, $queryAllUsersLoggedin2);
+
+while ($dataStateUsers2->fetch_row()) {
+    $currentUsers++;
+}
+
+if($currentUsers != $countUsers){
+    echo '<script type="text/javascript">play_sound();</script>';
+}
+
+
+
 ?>
 </body>
 

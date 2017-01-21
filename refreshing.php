@@ -1,7 +1,7 @@
 <html>
 <head>
    <!-- refresh every 5 seconds -->
-   <meta http-equiv="refresh" content="3">
+   <meta http-equiv="refresh" content="2">
 </head>
 <body>   
 <?php
@@ -48,7 +48,7 @@ $NumUsersFromDatabase = mysqli_query($dbc, $queryNumUsersInDatabase);
 $currentUsers = 0;
 
 // Get the number of users in chat from db again
-// and keep trayck of total users in database:
+// and keep track of total users in database:
 //$result = $dbc->query("SELECT numUsers FROM chatnumusers");
 while ($r = $NumUsersFromDatabase->fetch_row()) {
     echo "Number of users in chat: " . $r[0];
@@ -74,6 +74,7 @@ $queryNumUsers =
 'UPDATE chatnumusers SET numUsers=' . $countUsers . ' WHERE topic_id=' . $currentTopicID;
 
 mysqli_query($dbc, $queryNumUsers);
+
 
 
 

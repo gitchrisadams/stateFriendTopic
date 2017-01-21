@@ -59,8 +59,7 @@ if(isset($_SESSION['user_id'])){
 
     // Display a message that user has entered the chat room:
     $userHasEntered = $username . " has entered the chat room.";
-    //echo '<script type="text/javascript">play_sound();</script>';
-    
+
     $result = $dbc->prepare("INSERT INTO messages VALUES('',?,?,?)");
     $result->bind_param("ssd", $username, $userHasEntered, $currentTopicID);
     $result->execute();
@@ -75,8 +74,11 @@ if(isset($_SESSION['user_id'])){
 
 
     ?>
-    <script>alert("Warning, logging off, refreshing/leaving page will delete all your chat messages"); 
-    </script>
+            <script>
+            alert("Warning, logging off, refreshing/leaving page will delete all your chat messages"); 
+
+        </script>
+    
 
         <div class="msg-container">
 
