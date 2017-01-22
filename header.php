@@ -4,17 +4,20 @@
 <head>
 <link rel="shortcut icon" href="images/chrisico.png" />
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Google Fonts: -->
+<link href="https://fonts.googleapis.com/css?family=Passion+One" rel="stylesheet">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<!-- Bootstrap -->
+<link href="assets/css/bootstrap.css" rel="stylesheet">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Optional Bootstrap theme -->
+<!-- <link href="assets/css/bootstrap-theme.css" rel="stylesheet"> -->
+
+<!-- Latest compiled and minified Bootstrap JavaScript -->
+<script src="assets/js/bootstrap.min.js"></script>
 
 <!-- Font Awesome: -->
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href="assets/css/font-awesome.min.css" rel="stylesheet">
 
 <!-- JQuery: -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -39,8 +42,56 @@ onmousemove="reset_interval()"
 onclick="reset_interval()"
 onkeypress="reset_interval()"
 onscroll="reset_interval()">
-<div class="TenPxPaddingDiv">
-<?php
-  echo '<a id="FriendTopicHeading" href="index.php"><h3>FriendTopic</h3></a>';
-?>
-</div>
+
+<?php if (isset($_SESSION['username'])): ?>
+<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">FriendTopic</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-right">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">HOME</a></li>
+            <li><a href="#">CREATE TOPIC</a></li>
+            <li><a href="#">PICK TOPICS</a></li>
+            <li><a href="#">EDIT PROFILE</a></li>
+            <li><a href="#">LOG OUT(test)</a></li>
+            <li><a href="#">ABOUT/FAQ</a></li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+ <?php else: ?> 
+<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">FriendTopic</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-right">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">HOME</a></li>
+            <li><a href="about.html">LOGIN</a></li>
+            <li><a href="contact.html">SIGN UP</a></li>
+            <li><a href="contact.html">ABOUT</a></li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+<?php endif; ?>

@@ -40,18 +40,66 @@ a:hover#FriendTopicHeading{
   text-decoration: underline;
 }
 
+a:link#ChatLinks{
+  text-decoration: none;
+  
+  color:#555555;
+
+}
+a:visited#ChatLinks{
+  text-decoration: none;
+}
+a:hover#ChatLinks{
+  text-decoration: none;
+  color:#00B3FE;
+}
+
+
+h1{
+  font-family: 'Chewy', cursive;
+  font-size: 50px;
+  color: #397B96;
+}
+
 .viewTopicsTable{
   border-spacing: 25px 50px;
 }
 
 .TenPxPaddingDiv{
+  margin-top: 100px;
   padding-left: 10px;
+}
+
+.FiftyPxPaddingDiv{
+  margin-top: 100px;
+  padding-left:180px;
+}
+
+.imgfloatright{
+  float:left;
+}
+
+.floatLeft{
+  float:left;
+}
+
+.floatRight{
+  float:right;
+}
+
+.clearFloat{
+    clear:both;
 }
 
 #about{
   padding-left: 10px;
   width:600;
 }
+
+#imgCoffeeShop600Index{
+  padding-right:200px;
+}
+
 
 
 

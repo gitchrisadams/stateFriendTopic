@@ -1,6 +1,8 @@
 <!-- External stylesheet -->
 <link rel="stylesheet" type="text/css" href="style.css">
 
+<!-- Fonts: -->
+<link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
 <?php
   // Start the session
   require_once('startsession.php');
@@ -15,9 +17,6 @@
   // Database connection variables:
   require_once('dbconnect.php');
 
-  // Show the navigation menu
-  require_once('navmenu.php');
-
   // Auto logout after 5min:
   //require_once('autologout.php')
 
@@ -27,23 +26,13 @@
   // Set the encoding...
   mysqli_set_charset($dbc, 'utf8');
 
-
-  // Create query to get topic names and users in each topic:
-  // $query = 
-  // "SELECT mismatch_topic.name, mismatch_user_topic.topic_id, COUNT(*) 
-  // FROM mismatch_user_topic 
-  // INNER JOIN mismatch_topic
-  // ON mismatch_user_topic.topic_id = mismatch_topic.topic_id
-  // GROUP BY mismatch_user_topic.topic_id
-  // ORDER BY COUNT(*) DESC";
-
-  // Query database passing query to function in dbconnect.php:
-  //$data = mysqli_query($dbc, $query);
-
 ?>
-<div class="TenPxPaddingDiv jumbotron">
-<h1>Chat</h1>
 
+<div class="FiftyPxPaddingDiv">
+
+<h1>Chat</h1>
+<div>
+<img class="floatRight" id="imgCoffeeShop600Index" src="images/coffeeShopLaptop600.png"/>
 
 <?php 
     
@@ -53,13 +42,15 @@
       require_once("deleteAllMessages.php");
   ?>
           <br>
-          <a href="state.php"><h3>State chat</h3></a>
+          <a id="ChatLinks" href="state.php"><h3>State chat</h3></a>
           <br>
-          <a href="city.php"><h3>City/State Chat</h3></a>
+          <a id="ChatLinks" href="city.php"><h3>City/State Chat</h3></a>
           <br>
-          <a href="topics.php"><h3>USA Topic Chat</h3></a>
-          <br>
+          <a id="ChatLinks" href="topics.php"><h3>USA Topic Chat</h3></a>
 
+          <br></div>
+
+          <br class="clearFloat">
   <?php
     }
       // If user is not logged in, just display topic w/ no link:
@@ -78,6 +69,7 @@
 
     ?>
 </div>
+
 <?php
   mysqli_close($dbc);
 
