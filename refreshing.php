@@ -51,10 +51,12 @@ $currentUsers = 0;
 // and keep track of total users in database:
 //$result = $dbc->query("SELECT numUsers FROM chatnumusers");
 while ($r = $NumUsersFromDatabase->fetch_row()) {
-    echo "Number of users in chat: " . $r[0];
+    
     $currentUsers = $r[0];
 
 }
+
+echo "Number of users in chat: " . $currentUsers;
 
 // If the number of users in database is 0
 // then topic is not in the database yet so

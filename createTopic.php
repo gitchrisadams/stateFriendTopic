@@ -20,10 +20,6 @@
     echo '<p class="login">Please <a href="login.php">log in</a> to access this page.</p>';
     exit();
   }
-
-  // Show the navigation menu
-  require_once('navmenu.php');
-
     // Delete all messages to start:
     require_once("deleteAllMessages.php");
 

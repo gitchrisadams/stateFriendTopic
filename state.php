@@ -15,8 +15,6 @@
   // Database connection variables:
   require_once('dbconnect.php');
 
-  // Show the navigation menu
-  require_once('navmenu.php');
 
   // Auto logout after 5min:
   //require_once('autologout.php')

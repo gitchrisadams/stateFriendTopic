@@ -2,8 +2,6 @@
   // Insert the page header
   $page_title = 'FriendTopic';
   require_once('header.php');
-  // Show the navigation menu
-  require_once('navmenu.php');
 
   // Database connection variables:
   require_once('dbconnect.php');

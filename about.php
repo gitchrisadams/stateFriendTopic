@@ -15,9 +15,6 @@
   // Database connection variables:
   require_once('dbconnect.php');
 
-  // Show the navigation menu
-  require_once('navmenu.php');
-
     // Make sure the user is logged in before deleting messages:
   if (isset($_SESSION['user_id'])) {
     require_once('deleteAllMessages.php');

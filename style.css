@@ -12,6 +12,11 @@
   font-style: italic;
 }
 
+.wrapper{
+  margin-top: 50px;
+  margin-left:20px;
+}
+
 form label {
   display: inline-block;
   width: 150px;
@@ -92,12 +97,22 @@ h1{
 }
 
 #about{
+  margin-top:70px;
   padding-left: 10px;
   width:600;
 }
 
 #imgCoffeeShop600Index{
-  padding-right:200px;
+  margin-top:50px;
+  width: 100%;
+  height:auto;
+  /*border:1px solid;*/
+}
+
+#div1{
+  margin-top:50px;
+  width:300px;
+  /*border:1px solid;*/
 }
 
 

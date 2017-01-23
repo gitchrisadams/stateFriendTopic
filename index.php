@@ -17,9 +17,6 @@
   // Database connection variables:
   require_once('dbconnect.php');
 
-  // Auto logout after 5min:
-  //require_once('autologout.php')
-
   // Connect to the database 
   $dbc = db_connect();
 
@@ -27,12 +24,7 @@
   mysqli_set_charset($dbc, 'utf8');
 
 ?>
-
-<div class="FiftyPxPaddingDiv">
-
-<h1>Chat</h1>
-<div>
-<img class="floatRight" id="imgCoffeeShop600Index" src="images/coffeeShopLaptop600.png"/>
+<div class="wrapper">
 
 <?php 
     
@@ -41,34 +33,89 @@
       // Delete all messages to start:
       require_once("deleteAllMessages.php");
   ?>
-          <br>
-          <a id="ChatLinks" href="state.php"><h3>State chat</h3></a>
-          <br>
-          <a id="ChatLinks" href="city.php"><h3>City/State Chat</h3></a>
-          <br>
-          <a id="ChatLinks" href="topics.php"><h3>USA Topic Chat</h3></a>
 
-          <br></div>
+<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+<div class="row">
+  <div id="div1" class="col-xs-12 col-md-8">
+    <h1>Chat</h1>
+    <a id="ChatLinks" href="state.php"><h3>State chat</h3></a>
+    <a id="ChatLinks" href="city.php"><h3>City/State Chat</h3></a>
+    <a id="ChatLinks" href="topics.php"><h3>USA Topic Chat</h3></a>
+  </div>
 
-          <br class="clearFloat">
+  <div class="col-xs-6 col-md-4">  
+    <img id="imgCoffeeShop600Index" src="images/coffeeShopLaptop600.png"/>
+  </div>
+</div>
+
+<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+<div class="row">
+  <div class="col-xs-6 col-md-4">
+
+  </div>
+
+  <div class="col-xs-6 col-md-4">
+
+  </div>
+  <div class="col-xs-6 col-md-4"></div>
+</div>
+
+<!-- Columns are always 50% wide, on mobile and desktop -->
+<div class="row">
+  <div class="col-xs-6"></div>
+  <div class="col-xs-6"></div>
+</div>
+</div>
+
+</div>
+
   <?php
     }
       // If user is not logged in, just display topic w/ no link:
       else{
   ?>
-          <br>
-          <h3>State chat</h3>
-          <br>
-          <h3>City/State Chat</h3>
-          <br>
-          <h3>USA Chat</h3>
-          <br>
+
+
+<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+<div class="row">
+  <div id="div1" class="col-xs-12 col-md-8">
+    <h1>Chat</h1>
+    <h3>State chat</h3>
+    <h3>City/State Chat</h3>
+    <h3>USA Topic Chat</h3>
+  </div>
+
+  <div class="col-xs-6 col-md-4">  
+    <img id="imgCoffeeShop600Index" src="images/coffeeShopLaptop600.png"/>
+  </div>
+</div>
+
+<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+<div class="row">
+  <div class="col-xs-6 col-md-4">
+
+  </div>
+
+  <div class="col-xs-6 col-md-4">
+
+  </div>
+  <div class="col-xs-6 col-md-4"></div>
+</div>
+
+<!-- Columns are always 50% wide, on mobile and desktop -->
+<div class="row">
+  <div class="col-xs-6"></div>
+  <div class="col-xs-6"></div>
+</div>
+</div>
+
+</div>
 
     <?php
       }
 
     ?>
-</div>
+
 
 <?php
   mysqli_close($dbc);
@@ -76,3 +123,4 @@
   // Insert the page footer
   require_once('footer.php');
 ?>
+

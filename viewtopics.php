@@ -17,9 +17,6 @@
     exit();
   }
 
-  // Show the navigation menu
-  require_once('navmenu.php');
-
 // Connect to the database 
 $dbc = db_connect();
 
