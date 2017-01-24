@@ -75,7 +75,6 @@ if(isset($_SESSION['user_id'])){
     
 
         <div class="msg-container">
-
             <div class="header">
                 <h1><?php echo $currentTopic ?> USA Chat</h1>
 
